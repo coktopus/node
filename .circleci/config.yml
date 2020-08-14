@@ -1,0 +1,39 @@
+version: 2.1
+orbs:
+  node: circleci/node@3.0.1
+  gcr: circleci/gcp-gcr@0.7.1
+jobs:
+  build:
+    description: Install npm
+    # machine option runs your jobs in a dedicated, ephemeral VM that has the following specifications:
+    machine: true
+    steps:
+      - checkout
+      # Install node
+      - node/install
+      # Install npmERROR: (gcloud.config.set) 
+      - node/install-npm
+      # Download and cache dependencies
+  Build-Push-Image-Docker:
+    description: Build and push image to Google Container Registry
+    machine: true
+    steps:
+      - checkout
+      - gcr/gcr-auth
+      - gcr/build-image:
+          image: project-for-video
+          tag: "${CIRCLE_SHA1}"
+      - gcr/push-image:
+          image: project-for-video
+          tag: "${CIRCLE_SHA1}"
+    
+workflows:
+  version: 2
+  build:
+    jobs: 
+      - Build-Push-Image-Docker:
+          filters:
+            branches:
+              only: [dev]
+
+
