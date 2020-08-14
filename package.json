@@ -1,0 +1,24 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "for video",
+  "main": "index.js",
+  "scripts": {
+    "watch": "nodemon --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coktopus/node.git"
+  },
+  "author": "costal oktopus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coktopus/node/issues"
+  },
+  "homepage": "https://github.com/coktopus/node#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}
